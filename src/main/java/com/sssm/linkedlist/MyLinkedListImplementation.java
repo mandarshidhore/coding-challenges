@@ -72,9 +72,9 @@ class MyLinkedList<X> {
 		if (position == 0) {
 			head = temp.getNext();
 		}
-		
+
 		for (int i = 0; i < position; i++) {
-			
+
 		}
 
 	}
