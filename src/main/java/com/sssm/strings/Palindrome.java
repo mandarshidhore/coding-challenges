@@ -4,28 +4,26 @@ public class Palindrome {
 
 	public static void main(String[] args) {
 		String input = "abcde";
-		String reversed = reverseString(input);
-		print(input, reversed);
+		printStatus(input, isPalindrome(input));
 
 		input = "abcba";
-		reversed = reverseString(input);
-		print(input, reversed);
+		printStatus(input, isPalindrome(input));
 	}
 
-	private static String reverseString(String inputString) {
+	private static boolean isPalindrome(String inputString) {
 		String s = "";
 		char[] charArray = inputString.toCharArray();
 		for (int i = charArray.length - 1; i >= 0; i--) {
 			s = s + charArray[i];
 		}
-		return s;
+		return s.equalsIgnoreCase(inputString);
 	}
 
-	private static void print(String a, String b) {
-		if (a.equals(b)) {
-			System.out.println("Equal");
+	private static void printStatus(String input, boolean isPalindrome) {
+		if (isPalindrome) {
+			System.out.println(input + " is a Palindrome");
 		} else {
-			System.out.println("Not Equal");
+			System.out.println(input + " is not a Palindrome");
 		}
 	}
 
