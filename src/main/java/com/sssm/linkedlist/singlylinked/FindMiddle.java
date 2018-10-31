@@ -1,4 +1,4 @@
-package com.sssm.linkedlist;
+package com.sssm.linkedlist.singlylinked;
 
 import java.util.LinkedList;
 
@@ -17,7 +17,7 @@ public class FindMiddle {
 		System.out.println("Middle Element = " + jdkLinkedList.get(size / 2));
 
 		// refer to MyLinkedListImplementation class
-		MyLinkedList<String> mll = new MyLinkedList<>();
+		SinglyLinkedList<String> mll = new SinglyLinkedList<>();
 		mll.addItem("1");
 		mll.addItem("2");
 		mll.addItem("3");
