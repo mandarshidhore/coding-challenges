@@ -67,11 +67,11 @@ public class CustomLinkedListImplementation {
 		sll.remove(2);
 		System.out.print("After removing C, ");
 		sll.print(); // should print B, D, F
-		
+
 		sll.remove(0);
 		System.out.print("After removing B, ");
 		sll.print(); // should print D, F
-		
+
 		sll.remove(1);
 		System.out.print("After removing F, ");
 		sll.print(); // should print D
@@ -154,7 +154,6 @@ class SinglyLinkedList<X> {
 				next = furtherNode;
 			}
 		}
-
 	}
 
 	public void print() {
