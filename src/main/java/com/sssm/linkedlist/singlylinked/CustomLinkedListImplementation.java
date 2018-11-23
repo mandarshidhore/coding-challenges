@@ -7,7 +7,7 @@ public class CustomLinkedListImplementation {
 
 		sll.remove(0);
 
-		sll.addItem("A");
+		sll.addNodeAtTheEnd("A");
 		System.out.print("After adding A, ");
 		sll.print(); // should print A
 
@@ -15,10 +15,10 @@ public class CustomLinkedListImplementation {
 		System.out.print("After removing A, ");
 		sll.print(); // empty
 
-		sll.addItem("A");
-		sll.addItem("B");
-		sll.addItem("C");
-		sll.addItem("D");
+		sll.addNodeAtTheEnd("A");
+		sll.addNodeAtTheEnd("B");
+		sll.addNodeAtTheEnd("C");
+		sll.addNodeAtTheEnd("D");
 		System.out.print("After adding A B C D, ");
 		sll.print(); // should print A, B, C, D
 
@@ -26,7 +26,7 @@ public class CustomLinkedListImplementation {
 		System.out.print("After removing A, ");
 		sll.print(); // should print B, C, D
 
-		sll.addItem("A");
+		sll.addNodeAtTheEnd("A");
 		System.out.print("After adding A, ");
 		sll.print(); // should print B, C, D, A
 
@@ -34,7 +34,7 @@ public class CustomLinkedListImplementation {
 		System.out.print("After removing C, ");
 		sll.print(); // should print B, D, A
 
-		sll.addItem("C");
+		sll.addNodeAtTheEnd("C");
 		System.out.print("After adding C, ");
 		sll.print(); // should print B, D, A, C
 
@@ -42,7 +42,7 @@ public class CustomLinkedListImplementation {
 		System.out.print("After removing A, ");
 		sll.print(); // should print B, D, C
 
-		sll.addItem("A");
+		sll.addNodeAtTheEnd("A");
 		System.out.print("After adding A, ");
 		sll.print(); // should print B, D, C, A
 
@@ -50,9 +50,9 @@ public class CustomLinkedListImplementation {
 		System.out.print("After removing A, ");
 		sll.print(); // should print B, D, C
 
-		sll.addItem("E");
-		sll.addItem("A");
-		sll.addItem("F");
+		sll.addNodeAtTheEnd("E");
+		sll.addNodeAtTheEnd("A");
+		sll.addNodeAtTheEnd("F");
 		System.out.print("After adding E A F, ");
 		sll.print(); // should print B, D, C, E, A, F
 
@@ -75,6 +75,13 @@ public class CustomLinkedListImplementation {
 		sll.remove(1);
 		System.out.print("After removing F, ");
 		sll.print(); // should print D
+		
+		sll.addNodeAsNewHead("5");
+		sll.addNodeAsNewHead("4");
+		sll.addNodeAsNewHead("3");
+		sll.addNodeAsNewHead("2");
+		sll.addNodeAsNewHead("1");
+		sll.print(); // should print 1, 2, 3, 4, 5, D
 	}
 
 }
@@ -114,7 +121,8 @@ class SinglyLinkedList<X> {
 		tail = null;
 	}
 
-	public void addItem(X data) {
+	// adds a node at the end
+	public void addNodeAtTheEnd(X data) {
 		if (head == null) {
 			head = new Node(data);
 			tail = head;
@@ -122,6 +130,37 @@ class SinglyLinkedList<X> {
 			Node newNode = new Node(data);
 			tail.setNext(newNode);
 			tail = newNode;
+		}
+	}
+	
+	// adds a node at the front and make it a head
+	public void addNodeAsNewHead(X data) {
+		if (head == null) {
+			head = new Node(data);
+			tail = head;
+		} else {
+			Node temp = head;
+			Node newNode = new Node(data);
+			newNode.setNext(temp);
+			head = newNode;
+		}
+	}
+	
+	// adds a node after a given node
+	public void addNodeAfterThisNode(Node prev, X data) {
+		if (prev == null) {
+			// can either return or create a new node and make it as head
+			return;
+		} else {
+			Node newNode = new Node(data);
+			Node currentNextNode = prev.getNext();
+			if (currentNextNode == null) {
+				prev.setNext(newNode);
+				tail = newNode;
+			} else {
+				newNode.setNext(currentNextNode);
+				prev.setNext(newNode);
+			}
 		}
 	}
 

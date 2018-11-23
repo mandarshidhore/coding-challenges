@@ -18,20 +18,20 @@ public class FindMiddle {
 
 		// refer to MyLinkedListImplementation class
 		SinglyLinkedList<String> mll = new SinglyLinkedList<>();
-		mll.addItem("1");
-		mll.addItem("2");
-		mll.addItem("3");
-		mll.addItem("4");
+		mll.addNodeAtTheEnd("1");
+		mll.addNodeAtTheEnd("2");
+		mll.addNodeAtTheEnd("3");
+		mll.addNodeAtTheEnd("4");
 
 		// should print 3
 		System.out.println("Middle Element = " + mll.findMiddle());
 
-		mll.addItem("5");
+		mll.addNodeAtTheEnd("5");
 
 		// should print 3
 		System.out.println("Middle Element = " + mll.findMiddle());
 
-		mll.addItem("6");
+		mll.addNodeAtTheEnd("6");
 
 		// should print 4
 		System.out.println("Middle Element = " + mll.findMiddle());
