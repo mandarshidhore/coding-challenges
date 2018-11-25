@@ -1,5 +1,7 @@
 package com.sssm.linkedlist.singlylinked;
 
+import com.sssm.linkedlist.singlylinked.SinglyLinkedList.Node;
+
 public class CustomLinkedListImplementation {
 
 	public static void main(String[] args) {
@@ -82,6 +84,30 @@ public class CustomLinkedListImplementation {
 		sll.addNodeAsNewHead("2");
 		sll.addNodeAsNewHead("1");
 		sll.print(); // should print 1, 2, 3, 4, 5, D
+		
+		sll.deleteAllNodes();
+		System.out.print("After deleting all nodes, ");
+		sll.print(); // should print Linked List contains - no elements 
+		
+		Node current = sll.addNodeAsNewHead("5");
+		System.out.print("After adding a new head as 5, ");
+		sll.print(); // should print 5
+		
+		sll.addNodeAfterAGivenNode(current, "6");
+		System.out.print("After adding a node after 5, ");
+		sll.print(); // should print 5, 6
+		
+		sll.addNodeAfterAGivenNode(current, "7");
+		System.out.print("After adding a node after 5, ");
+		sll.print(); // should print 5, 7, 6
+		
+		current = sll.addNodeAsNewHead("8");
+		System.out.print("After adding a new head as 8, ");
+		sll.print(); // should print 8, 5, 7, 6
+		
+		sll.addNodeAfterAGivenNode(current, "9");
+		System.out.print("After adding a node after 8, ");
+		sll.print(); // should print 8, 9, 5, 7, 6
 	}
 
 }
@@ -134,23 +160,25 @@ class SinglyLinkedList<X> {
 	}
 	
 	// adds a node at the front and make it a head
-	public void addNodeAsNewHead(X data) {
+	public Node addNodeAsNewHead(X data) {
 		if (head == null) {
 			head = new Node(data);
 			tail = head;
+			return head;
 		} else {
 			Node temp = head;
 			Node newNode = new Node(data);
 			newNode.setNext(temp);
 			head = newNode;
+			return head;
 		}
 	}
 	
 	// adds a node after a given node
-	public void addNodeAfterThisNode(Node prev, X data) {
+	public Node addNodeAfterAGivenNode(Node prev, X data) {
 		if (prev == null) {
 			// can either return or create a new node and make it as head
-			return;
+			return null;
 		} else {
 			Node newNode = new Node(data);
 			Node currentNextNode = prev.getNext();
@@ -161,6 +189,7 @@ class SinglyLinkedList<X> {
 				newNode.setNext(currentNextNode);
 				prev.setNext(newNode);
 			}
+			return newNode;
 		}
 	}
 
@@ -194,10 +223,18 @@ class SinglyLinkedList<X> {
 			}
 		}
 	}
+	
+	public void deleteAllNodes() {
+		head = null;
+		tail = null;
+	}
 
 	public void print() {
 		System.out.println("Linked List contains - ");
 		Node node = head;
+		if (node == null) {
+			System.out.println("no elements");
+		}
 		while (node != null) {
 			System.out.println("item -> " + node.getData());
 			node = node.getNext();
