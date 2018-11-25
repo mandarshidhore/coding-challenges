@@ -243,15 +243,15 @@ class SinglyLinkedList<X> {
 	}
 
 	public X findMiddle() {
-		Node p = head;
-		Node q = head;
+		Node slowMover = head;
+		Node fastMover = head;
 
-		while (q != null && q.getNext() != null) {
-			p = p.getNext();
-			q = q.getNext().getNext();
+		while (fastMover != null && fastMover.getNext() != null) {
+			slowMover = slowMover.getNext();
+			fastMover = fastMover.getNext().getNext();
 		}
 
-		return p.getData();
+		return slowMover.getData();
 	}
 
 }
